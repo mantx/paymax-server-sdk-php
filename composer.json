@@ -11,8 +11,9 @@
         "php": ">=5.3.0"
     },
     "autoload": {
+        "files": ["paymax/init.php"],
         "psr-4": {
-            "Paymax\\": "."
+            "Paymax\\": "paymax/"
         }
     }
 }
