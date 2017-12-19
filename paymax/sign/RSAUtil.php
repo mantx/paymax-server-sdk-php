@@ -16,12 +16,17 @@ class RSAUtil
      * 签名数据
      *
      * @param $data 待签名数据
+     *
      * @return string 签名后的数据
      */
     public static function sign($data)
     {
         //读取私钥文件
-        $priKey = file_get_contents(SignConfig::getPrivateKeyPath());
+        if (SignConfig::getPrivateKey()) {
+            $priKey = SignConfig::getPrivateKey();
+        } else {
+            $priKey = file_get_contents(SignConfig::getPrivateKeyPath());
+        }
 
         //转换为openssl密钥，必须是没有经过pkcs8转换的私钥
         $res = openssl_get_privatekey($priKey);
@@ -43,12 +48,17 @@ class RSAUtil
      *
      * @param $data 原始数据
      * @param $sign 签名数据
+     *
      * @return bool 验签结果
      */
-    public static function verify($data, $sign)  {
-
-        //读取支付宝公钥文件
-        $pubKey = file_get_contents(SignConfig::getPaymaxPublicKeyPath());
+    public static function verify($data, $sign)
+    {
+        if (SignConfig::getPaymaxPublicKey()) {
+            $pubKey = SignConfig::getPaymaxPublicKey();
+        } else {
+            //读取支付宝公钥文件
+            $pubKey = file_get_contents(SignConfig::getPaymaxPublicKeyPath());
+        }
 
         //转换为openssl格式密钥
         $res = openssl_get_publickey($pubKey);

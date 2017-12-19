@@ -19,24 +19,24 @@ class ApiResource extends Paymax
     {
         self::_validateParams();
         $_http = new HttpCurlUtil();
-        if (empty($params)){
-            return $_http -> get($url, null, 5);
-        }else {
-            return $_http -> post($url, $params, 5);
+        if (empty($params)) {
+            return $_http->get($url, null, 5);
+        } else {
+            return $_http->post($url, $params, 5);
         }
     }
 
     private static function _validateParams()
     {
-        if (empty(SignConfig::getSecretKey())){
+        if (empty(SignConfig::getSecretKey())) {
             throw new AuthorizationException("Secret key can not be blank.");
         }
 
-        if (empty(SignConfig::getPrivateKeyPath())){
+        if (empty(SignConfig::getPrivateKeyPath()) && empty(SignConfig::getPrivateKey())) {
             throw new InvalidRequestException("The Path of RSA Private Key can not be blank.");
         }
 
-        if (empty(SignConfig::getPaymaxPublicKeyPath())){
+        if (empty(SignConfig::getPaymaxPublicKeyPath() && empty(SignConfig::getPaymaxPublicKey()))) {
             throw new AuthorizationException("The Path of Paymax Public Key can not be blank.");
         }
 
