@@ -36,7 +36,7 @@ class ApiResource extends Paymax
             throw new InvalidRequestException("The Path of RSA Private Key can not be blank.");
         }
 
-        if (empty(SignConfig::getPaymaxPublicKeyPath() && empty(SignConfig::getPaymaxPublicKey()))) {
+        if (empty(SignConfig::getPaymaxPublicKeyPath()) && empty(SignConfig::getPaymaxPublicKey())) {
             throw new AuthorizationException("The Path of Paymax Public Key can not be blank.");
         }
 
