@@ -32,6 +32,9 @@ class SignConfig
         return self::$privateKeyPath;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getPrivateKey()
     {
         return self::$privateKey;
@@ -45,6 +48,9 @@ class SignConfig
         self::$privateKey = $privateKey;
     }
 
+    /**
+     * @param $privateKey
+     */
     public static function setPrivateKey($privateKey)
     {
         self::$privateKey = $privateKey;
