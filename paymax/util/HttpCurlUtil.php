@@ -215,7 +215,7 @@ class HttpCurlUtil
             curl_close($ch);
         }
 
-        return $data;
+        return $body_data;
     }
 
     /**
